@@ -1,3 +1,8 @@
+
+emailjs.init({
+  publicKey: "2yP5f7c0bdAyi9enU"
+});
+
 const noButton = document.getElementById("no");
 const yesButton = document.getElementById("yes");
 const hint = document.getElementById("hint");
@@ -5,16 +10,49 @@ const result = document.getElementById("result");
 const buttons = document.getElementById("buttons");
 
 let escapes = 0;
+let sending = false;
 
 const phrases = [
-  "Tem certeza omds? 😭",
-  "LU, pensa com carinho pufavo",
-  "POR FAVOR LUANAAAA",
-  "Tá, eu mereci 😔",
-  "Paisada isso já"
+  "Tem certeza? 😭",
+  "LUANAAAA pufavo",
+  "Estoy a chorar",
+  "Tá, eu mereci😔",
+  "LUANNANANANAN POR FAVORRRRRR"
 ];
 
+async function sendResponse(resposta) {
+  if (sending) return;
+  sending = true;
+
+  yesButton.disabled = true;
+  noButton.disabled = true;
+  hint.textContent = "Registrando sua resposta...";
+
+  try {
+    await emailjs.send(
+      "service_jd7f6qi",
+      "template_g4ps3dy",
+      {
+        resposta: resposta,
+        data: new Date().toLocaleString("pt-BR"),
+        to_email: "william02313102@gmail.com"
+      }
+    );
+
+    hint.textContent = "Resposta registrada. ❤️";
+  } catch (error) {
+    console.error("Erro ao enviar:", error);
+    hint.textContent =
+      "Não foi possível enviar a resposta. Tente novamente.";
+    yesButton.disabled = false;
+    noButton.disabled = false;
+    sending = false;
+  }
+}
+
 function moveNoButton() {
+  if (escapes >= 6 || sending) return;
+
   escapes++;
 
   const maxX = Math.max(70, buttons.clientWidth / 2 - 70);
@@ -25,36 +63,39 @@ function moveNoButton() {
 
   noButton.style.transform = `translate(${x}px, ${y}px)`;
 
-  hint.textContent = phrases[Math.min(escapes - 1, phrases.length - 1)];
+  hint.textContent =
+    phrases[Math.min(escapes - 1, phrases.length - 1)];
 
-  // Depois de algumas fugas, deixa a escolha ser real.
   if (escapes >= 6) {
     noButton.style.transform = "none";
-    noButton.textContent = "NÃO 😔 (agora pode)";
-    hint.textContent = "Tá bom... agora eu prometo não fugir. ❤️";
-    noButton.onclick = () => {
-      result.textContent = "Tudo bem. Eu respeito. Só queria que você soubesse que eu gosto muito de você. ❤️";
-      noButton.disabled = true;
-      yesButton.disabled = true;
-      yesButton.style.opacity = ".45";
-      noButton.style.opacity = ".65";
-    };
+    noButton.textContent = "NÃO 😔";
+    hint.textContent = "Agora você pode escolher.";
   }
 }
 
 noButton.addEventListener("mouseenter", moveNoButton);
+
 noButton.addEventListener("touchstart", (event) => {
-  if (escapes < 6) {
+  if (escapes < 6 && !sending) {
     event.preventDefault();
     moveNoButton();
   }
 });
 
-yesButton.addEventListener("click", () => {
-  result.textContent = "EU SABIA 😭❤️ Agora vem cá dar um beijo no seu arrombado favorito.";
-  hint.textContent = "";
-  yesButton.disabled = true;
-  noButton.disabled = true;
-  noButton.style.opacity = ".35";
-  yesButton.style.transform = "scale(1.08)";
+yesButton.addEventListener("click", async () => {
+  if (sending) return;
+
+  result.textContent =
+    "Obrigado por responder. ❤️";
+
+  await sendResponse("SIM");
+});
+
+noButton.addEventListener("click", async () => {
+  if (escapes < 6 || sending) return;
+
+  result.textContent =
+    "Tudo bem. Eu respeito sua decisão. ❤️";
+
+  await sendResponse("NÃO");
 });
