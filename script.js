@@ -16,7 +16,7 @@ const phrases = [
   "Tem certeza? 😭",
   "LUANAAAA pufavo",
   "Estoy a chorar",
-  "Tá, eu mereci😔",
+  "OMDS, QUE KARAIA, AFA, NÃO FAZ ISSO CMG N",
   "LUANNANANANAN POR FAVORRRRRR"
 ];
 
@@ -39,7 +39,7 @@ async function sendResponse(resposta) {
       }
     );
 
-    hint.textContent = "Resposta registrada. ❤️";
+    hint.textContent = "Resposta registrada.";
   } catch (error) {
     console.error("Erro ao enviar:", error);
     hint.textContent =
@@ -86,7 +86,7 @@ yesButton.addEventListener("click", async () => {
   if (sending) return;
 
   result.textContent =
-    "Obrigado por responder. ❤️";
+    "isso ae fia";
 
   await sendResponse("SIM");
 });
@@ -95,7 +95,7 @@ noButton.addEventListener("click", async () => {
   if (escapes < 6 || sending) return;
 
   result.textContent =
-    "Tudo bem. Eu respeito sua decisão. ❤️";
+    "Ahhhh, tá bom, estoy tentando pelo menos afis afis sua lindoca";
 
   await sendResponse("NÃO");
 });
