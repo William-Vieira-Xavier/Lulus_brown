@@ -1,9 +1,11 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Para a Lu ❤️</title>
+  <meta name="theme-color" content="#09080d">
+  <title>Não seja cavala</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -12,35 +14,40 @@
   <main class="card">
     <div class="moon">☾</div>
 
-    <p class="small">poise oioi</p>
-    <h1>Lulu Brown, desculpa.</h1>
+    <p class="small">oioioi lulu brown</p>
+
+    <h1>Lu, desculpa.</h1>
 
     <p class="message">
-      Eu sei que naquele momento eu poderia ter te dado mais atenção
-      e entendo por que você ficou chateada.
+      Eu sei que naquele momento eu poderia ter te dado
+      mais atenção e entendo por que você ficou chateada.
     </p>
 
     <p class="message">
-      Eu não fiz por mal, mas sei que isso não muda o fato de que
-      minha atitude foi chata. Eu gosto muito de estar contigo
-      e não queria te fazer se sentir assim.
+      Eu não fiz por mal, mas sei que isso não muda o
+      fato de que minha atitude foi chata. Eu gosto muito
+      de estar contigo e não queria te fazer se sentir assim.
     </p>
 
     <p class="message highlight">
-      Desculpa ❤️
+      Desculpa...
     </p>
 
     <h2>Você me perdoa?</h2>
 
     <div class="buttons" id="buttons">
-      <button id="yes">SIM ❤️</button>
-      <button id="no">NÃO 😔</button>
+      <button id="yes" type="button">SIM ❤️</button>
+      <button id="no" type="button">NÃO 😔</button>
     </div>
 
-    <p id="hint" class="hint"></p>
-    <p id="result" class="result"></p>
+    <p id="hint" class="hint" aria-live="polite"></p>
+    <p id="result" class="result" aria-live="polite"></p>
   </main>
 
+  <!-- Biblioteca do EmailJS -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+  <!-- Código da página -->
   <script src="script.js"></script>
 </body>
 </html>
