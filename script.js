@@ -7,11 +7,11 @@ const buttons = document.getElementById("buttons");
 let escapes = 0;
 
 const phrases = [
-  "Tem certeza? 😭",
-  "LU, pensa com carinho KKKKK",
-  "Essa opção parece suspeita...",
-  "Tá, eu mereci um pouquinho 😔",
-  "Última chance de ser boazinha comigo 👀"
+  "Tem certeza omds? 😭",
+  "LU, pensa com carinho pufavo",
+  "POR FAVOR LUANAAAA",
+  "Tá, eu mereci 😔",
+  "Paisada isso já"
 ];
 
 function moveNoButton() {
